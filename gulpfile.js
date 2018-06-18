@@ -2,10 +2,6 @@ var gulp = require('gulp');
 
 gulp.task('copy', function() {
 
-  // Start Bootstrap Clean Blog SCSS
-  gulp.src(['node_modules/startbootstrap-clean-blog/scss/**/*'])
-    .pipe(gulp.dest('assets/vendor/startbootstrap-clean-blog/scss'))
-
   // Start Bootstrap Clean Blog JS
   gulp.src([
       'node_modules/startbootstrap-clean-blog/js/clean-blog.min.js',
@@ -21,6 +17,14 @@ gulp.task('copy', function() {
       '!**/*.map'
     ])
     .pipe(gulp.dest('assets/vendor/bootstrap'))
+  
+    gulp.src([
+      'node_modules/bootstrap/scss/**/*',
+      '!**/npm.js',
+      '!**/bootstrap-theme.*',
+      '!**/*.map'
+    ])
+    .pipe(gulp.dest('vendor/bootstrap'))
 
   // jQuery
   gulp.src(['node_modules/jquery/dist/jquery.js', 'node_modules/jquery/dist/jquery.min.js'])
