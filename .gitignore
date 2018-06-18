@@ -3,3 +3,5 @@ node_modules
 Gemfile.lock
 .sass-cache
 *.gem
+vendor/bundle
+.bundle
