@@ -1,4 +1,6 @@
-@import "../../vendor/bootstrap/bootstrap.scss";
+@import '../../vendor/bootstrap/functions';
+@import '../../vendor/bootstrap/variables';
+@import '../../vendor/bootstrap/mixins';
 @import "variables.scss";
 @import "mixins.scss";
 @import "global.scss";
