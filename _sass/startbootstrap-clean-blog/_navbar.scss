@@ -57,8 +57,9 @@
       /* when the user scrolls down, we hide the header right above the viewport */
       position: fixed;
       @include vendor-prefix('transform', 'translate3d(0, -100%, 0)');
-      @include vendor-prefix('transition', 'transform 0.2s');
-      border-bottom: 1px solid darken($white, .05);
+      /* here we change the color with a transition of 2s so that the black to white transition can happen of mostly
+         off screen since the transform is 0.2 */
+      @include vendor-prefix('transition', 'transform 0.2s, background-color 2s');
       background-color: fade-out($white, .1);
       .navbar-brand {
         color: $gray-900;
