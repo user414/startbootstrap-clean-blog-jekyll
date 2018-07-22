@@ -11,12 +11,11 @@ $(function() {
       $(this).removeClass("floating-label-form-group-with-focus")
   });
   if ($(window).width() > 992) {
-      var o = $("#mainNav").height();
       $(window).on("scroll", {
           previousTop: 0
       }, function() {
           var s = $(window).scrollTop();
-          if (this.previousTop < s && s > o)  {
+          if (this.previousTop < s && s > 0)  {
               $("#mainNav").addClass("is-hidden-above-viewport");
               $("#mainNav").removeClass("is-visible");
           } else if (this.previousTop > s && s > 0) {
