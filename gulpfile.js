@@ -1,15 +1,15 @@
 var gulp = require('gulp');
 
-gulp.task('copy', function() {
+// Copy third party libraries from /node_modules into /vendor
+gulp.task('vendor', function() {
 
-  // Start Bootstrap Clean Blog JS
+  // Bootstrap
   gulp.src([
-      'node_modules/startbootstrap-clean-blog/js/clean-blog.min.js',
-      'node_modules/startbootstrap-clean-blog/js/jqBootstrapValidation.js'
+      './node_modules/bootstrap/scss/**/*'
     ])
-    .pipe(gulp.dest('assets/vendor/startbootstrap-clean-blog/js'))
+    .pipe(gulp.dest('./vendor/bootstrap'))
 
-})
+});
 
 // Default task
-gulp.task('default', ['copy']);
+gulp.task('default', ['vendor']);
