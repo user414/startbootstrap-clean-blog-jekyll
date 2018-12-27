@@ -32,6 +32,10 @@ var navbarFunctions = {
     
         return ((bottomOfScreen > topOfElement) && (topOfScreen < bottomOfElement));
     },
+    isScrollingDown: function(previousTop,scrollTop)  {
+        return previousTop < scrollTop;
+        //need to use type of in there to make sure it is not undefined
+    }
     
 }
 
@@ -55,15 +59,16 @@ $(function () {
         }, function () {
             var scrollTop = $(window).scrollTop();
             var navbarVisible = navbarFunctions.isNavbarVisible();
-
+            var areWeScrollingDown = navbarFunctions.isScrollingDown(this.previousTop,scrollTop);
             if (navbarVisible)  {
-                if (this.previousTop < scrollTop && navbarFunctions.isNavbarNotOnScreenTop())  {
+                //if we are scrolling down 
+                if (areWeScrollingDown && navbarFunctions.isNavbarNotOnScreenTop())  {
                     navbarFunctions.hide();
                 } else if (scrollTop == 0) {
                     navbarFunctions.fixToScreenTop();
                 }
             } else  {
-                if (this.previousTop > scrollTop) {
+                if (!areWeScrollingDown && typeof this.previousTop !== "undefined") {
                     navbarFunctions.show();
                 }  else {
                     navbarFunctions.hideNoTransition();
