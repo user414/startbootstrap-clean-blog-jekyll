@@ -21,7 +21,7 @@ var navbarFunctions = {
     fixToScreenTop: function () {
         $("#mainNav").removeClass("fixed-viewport is-visible");
     },
-    isNavbarOnScreenTop: function()  {
+    isNavbarNotOnScreenTop: function()  {
         return $("#mainNav").offset().top > 0;
     },
     isNavbarVisible: function()  {
@@ -53,19 +53,24 @@ $(function () {
         $(window).on("scroll", {
             previousTop: 0
         }, function () {
-            var s = $(window).scrollTop();
+            var scrollTop = $(window).scrollTop();
             var navbarVisible = navbarFunctions.isNavbarVisible();
-            if (typeof this.previousTop === "undefined" || !navbarVisible) {
-                navbarFunctions.hideNoTransition();
+
+            if (navbarVisible)  {
+                if (this.previousTop < scrollTop && navbarFunctions.isNavbarNotOnScreenTop())  {
+                    navbarFunctions.hide();
+                } else if (scrollTop == 0) {
+                    navbarFunctions.fixToScreenTop();
+                }
+            } else  {
+                if (this.previousTop > scrollTop) {
+                    navbarFunctions.show();
+                }  else {
+                    navbarFunctions.hideNoTransition();
+                }
             }
-            if (this.previousTop < s && navbarFunctions.isNavbarOnScreenTop() && navbarVisible) {
-                navbarFunctions.hide();
-            } else if (this.previousTop > s && !navbarVisible) {
-                navbarFunctions.show();
-            } else if (s == 0) {
-                navbarFunctions.fixToScreenTop();
-            }
-            this.previousTop = s;
+            
+            this.previousTop = scrollTop;
         })
     }
 });
